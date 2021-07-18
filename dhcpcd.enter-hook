@@ -1,0 +1,18 @@
+echo “======== STARTING HOOK Reason:${reason} Interface:${interface}========” >> /tmp/tgoutput.txt
+
+if [ "$reason" = "PREINIT" ]; then
+        echo “======== First Test Passed ========” >> /tmp/tgoutput.txt
+        case "${interface}" in
+                wlan0|eth0)
+                        echo “======== Found ${interface} QUIT  ========” >> /tmp/tgoutput.txt
+                        ;;
+                *)
+                        echo “======== Second Test Passed interface ${interface}  ========” >> /tmp/tgoutput.txt
+                        phynumber=$(iw dev "${interface}" info | grep wiphy | grep -o '[0-9:]*')
+                        echo "${phynumber}" >> /tmp/tgoutput.txt
+                        echo “=======WLANCONFIG Interface:${interface} Phy:$phynumber =========” >> /tmp/tgoutput.txt
+                        iw phy "phy${phynumber}" interface add "mon${phynumber}" type monitor
+                        iw dev "${interface}" del
+                        ifconfig "mon${phynumber}" up
+        esac
+fi

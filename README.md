@@ -12,3 +12,6 @@ https://github.com/morrownr/USB-WiFi
 https://aallan.medium.com/adding-a-second-wireless-adaptor-to-a-raspberry-pi-for-network-monitoring-c37d7db7a9bd
 
 https://pimylifeup.com/raspberry-pi-network-scanner/
+
+
+to be clear you need to create this (dhcpcd.enter-hook) file in /etc either by copying it there or using your favorite editor to create it and paste in this content.  DHCPCD will then consult dhcpcd.enter-hook everytime it runs hooks.

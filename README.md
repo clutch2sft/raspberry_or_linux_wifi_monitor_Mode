@@ -15,3 +15,6 @@ https://pimylifeup.com/raspberry-pi-network-scanner/
 
 
 to be clear you need to create this (dhcpcd.enter-hook) file in /etc either by copying it there or using your favorite editor to create it and paste in this content.  DHCPCD will then consult dhcpcd.enter-hook everytime it runs hooks.
+
+
+Oh and mark it +x
